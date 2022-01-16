@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Game</title>
+    <style>
+        .gameStart {
+            position: relative;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .img {
+            display: block;
+        }
+
+        .ontop {
+            position: absolute;
+            top: 30%;
+            right: 30%;
+            transform: translate( -30%, -30% );
+        }
+
+        .progressButton {
+            background-color: black;
+            height: 30px;
+            width: 60px;
+            color: white;
+        }
+    </style>
+
+    
+</head>
+<body style="background-color: black; color: white; text-align: center;">
+    <audio id="music1" src="Music/anxiety.mp3"></audio> 
+
+    <div id="start" class="gameStart" hidden>
+        <img id="titleimage" class="img" src="img/titleimage.jpg" height="550" width="900" />
+        <div class="ontop">
+            <h1>Play Kidnapped</h1>
+            <input id="username" type="text" placeholder="Username" />
+            <button class="progressButton" onclick="StartGame()"></button>
+        </div>
+    </div>
+
+    <div id="level1" hidden="hidden">
+        <img id="firstImage" src="img/firstTV.jpg" height="550" width="900" /><br />
+        <button class="progressButton" onclick="Level2()">Next</button>
+    </div>
+
+    <div id="level2" hidden="hidden">
+        <img id="secondImage" src="img/placeholder1.jpg" height="550" width="900" /><br />
+        <button class="progressButton" onclick="Level3()">Next</button>
+    </div>
+
+    <div id="level3" hidden="hidden">
+        <img id="thirdImage" src="img/placeholder2.jpg" height="550" width="900" /><br />
+        <button class="progressButton" onclick="NextLevel()">Next</button>
+    </div>
+
+    <script type="text/javascript">
+
+
+        function StartGame() {
+            document.getElementById("start").style.display = "none";
+            document.getElementById("level1").hidden = false;
+            var sound = document.getElementById("music1")
+            sound.play();
+        }
+
+        function Level2() {
+            document.getElementById("level1").style.display = "none";
+            document.getElementById("level2").hidden = false;
+
+        }
+        function Level3() {
+            document.getElementById("level2").style.display = "none";
+            document.getElementById("level3").hidden = false;
+
+        }
+
+
+    </script>
+</body>
+</html>
