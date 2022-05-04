@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="Libraries/p5.js"></script>
+    <script src="Libraries/sketch.js"></script>
     <title>Kidnapped</title>
     <style>
         .gameStart {
@@ -22,54 +24,456 @@
 
         .progressButton {
             background-color: black;
-            height: 30px;
-            width: 60px;
+            height: 100px;
+            width: 100px;
             color: white;
         }
     </style>
 
-    
-</head>
-<body style="background-color: black; color: white; text-align: center;">
-    <audio id="music1" src="Music/anxiety.mp3"></audio> 
 
+</head>
+ 
+<body style="background-color: black; color: white; text-align: center;">
+    <audio id="music1" src="Music/anxiety.mp3"></audio>
+    <audio id="music2" src="Music/mixkit-metallic-sword-strike-2160.mp3"></audio>
+    <audio id="music3" src="Music/mixkit-handgun-click-1660.mp3"></audio>
+    <audio id="music4" src="Music/GunShotSnglShotExPE1097508.mp3"></audio>
+    <audio id="music5" src="Music/mixkit-wood-hammer-put-down-837.mp3"></audio>
+    <audio id="music6" src="Music/mixkit-paper-slide-1530.mp3"></audio>
+    <audio id="music7" src="Music/mixkit-electric-static-1453.mp3"></audio>
+    <audio id="music8" src="Music/zapsplat_impacts_wood_split_crack_break_splinter_tear_001_70996.mp3"></audio>
+    
     <div id="start" class="gameStart" hidden>
         <img id="titleimage" class="img" src="img/titleimage.jpg" height="550" width="900" />
         <div class="ontop">
             <h1>Play Kidnapped</h1>
-            <input id="username" type="text" placeholder="Username" />
-            <button class="progressButton" onclick="StartGame()"></button>
+            
+            <button class="progressButton" onclick="StartGame()">Play</button>
         </div>
     </div>
+    <div id="Game">
+        <div id="level1" hidden="hidden">
+            <img id="firstImage" src="img/Intro1.png" height="550" width="900" /><br />
+            <button class="progressButton" onclick="Level2()">Next</button>
+        </div>
 
-    <div id="level1" hidden="hidden">
-        <img id="firstImage" src="img/firstTV.jpg" height="550" width="900" /><br />
-        <button class="progressButton" onclick="Level2()">Next</button>
+        <div id="level2" hidden="hidden">
+            <img id="secondImage" src="img/firstTV1.jpg" height="550" width="900" /><br />
+            <button class="progressButton" onclick="Level3()">Next</button>
+        </div>
+
+        <div id="level3" hidden="hidden">
+            <img id="thirdImage" src="img/firstTV2.jpg" height="550" width="900" /><br />
+            <button class="progressButton" onclick="Level4()">Next</button>
+        </div>
+
+
+
+        <div id="level4" hidden="hidden">
+            <img id="fourthImage" src="img/firstTV3.jpg" height="550" width="900" /><br />
+            <button class="progressButton" onclick="Level5()">Break Free</button>
+        </div>
+
+        <div id="level5" hidden="hidden">
+            <img id="fifthImage" src="img/outofchair1.jpg" height="550" width="900" /><br />
+            <button class="progressButton" onclick="Level6()">Look Left</button>
+            <button class="progressButton" onclick="GoRightNoUse()">Look Right</button>
+
+        </div>
+
+
+        <div id="level6" hidden="hidden">
+            <img id="sixthImage" src="img/GoLeftHammerLetter.jpg" height="550" width="900" /><br />
+            <button class="progressButton" onclick="Level7()">Pick up letter</button>
+        </div>
+
+        <div id="level7" hidden="hidden">
+            <img id="seventhixthImage" src="img/Note1.jpg" height="550" width="900" /><br />
+            <button class="progressButton" onclick="Level8()">Put Away</button>
+        </div>
+
+        <div id="level8" hidden="hidden">
+            <img id="seventhixthImage" src="img/GoLeftHammer.jpg" height="550" width="900" /><br />
+            <button class="progressButton" onclick="Level9()">Pick up Item</button>
+        </div>
+
+        <div id="level9" hidden="hidden">
+            <img id="seventhixthImage" src="img/GoLeftempty.jpg" height="550" width="900" /><br />
+            <button class="progressButton" onclick="Level10()">Go Back</button>
+        </div>
+
+        <div id="level10" hidden="hidden">
+            <img id="seventhixthImage" src="img/outofchair1.jpg" height="550" width="900" /><br />
+            <button class="progressButton" onclick="Level11()">Go Right</button>
+        </div>
+
+        <div id="level11" hidden="hidden">
+            <img id="seventhixthImage" src="img/firstroomdoor.jpg" height="550" width="900" /><br />
+            <button class="progressButton" onclick="FirstLockOpen()">Walk to the door</button>
+        </div>
+
+        <div id="FirstLockOpen" hidden="hidden">
+            <img id="seventhixthImage" src="img/firstdoorlock.jpg" height="550" width="900" /><br />
+            <button class="progressButton" onclick="FirstLockOpened()">Use Hammer</button>
+        </div>
+
+        <div id="FirstLockOpened" hidden="hidden">
+            <img id="seventhixthImage" src="img/firstdoorlockopened.jpg" height="550" width="900" /><br />
+            <button class="progressButton" onclick="SecondRoom()">Enter Next Room</button>
+        </div>
+
+
+        <div id="GoRightNoUse" hidden="hidden">
+            <img id="NoUseImage" src="img/firstroomdoor2.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="Backfirstroom()">Go Back</button>
+        </div>
+
+        <div id="Backfirstroom" hidden="hidden">
+            <img id="NoUseImage" src="img/outofchair1.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="Left2()">Go Left</button>
+        </div>
+
+        <div id="Left2" hidden="hidden">
+            <img id="NoUseImage" src="img/GoLeftHammerLetter.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="Pickup2()">Pick up letter</button>
+        </div>
+
+        <div id="Pickup2" hidden="hidden">
+            <img id="NoUseImage" src="img/Note1.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="Hammer2()">Put Away</button>
+        </div>
+
+        <div id="Hammer2" hidden="hidden">
+            <img id="NoUseImage" src="img/GoLeftHammer.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="Table2()">Pick up Item</button>
+        </div>
+
+        <div id="Table2" hidden="hidden">
+            <img id="NoUseImage" src="img/GoLeftEmpty.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="FirstRoom2()">Go Back</button>
+        </div>
+
+        <div id="FirstRoom2" hidden="hidden">
+            <img id="NoUseImage" src="img/outofchair1.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="Firstdoor2()">Go Right</button>
+        </div>
+
+        <div id="Firstdoor2" hidden="hidden">
+            <img id="NoUseImage" src="img/firstroomdoor.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="Firstlock2()">Get closer</button>
+        </div>
+
+        <div id="Firstlock2" hidden="hidden">
+            <img id="NoUseImage" src="img/firstdoorlock.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="Firstlockopened2()">Use Hammer</button>
+        </div>
+
+        <div id="Firstlockopened2" hidden="hidden">
+            <img id="NoUseImage" src="img/firstdoorlockopened.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="SecondRoom()">Enter Next Room</button>
+        </div>
+
+        <div id="SecondRoom" hidden="hidden">
+            <img id="NoUseImage" src="img/secondroomfirst1.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="SecondNote()">Look Left</button>
+            <button class="progressButton" id="btn1" onclick="FuseBox()">Look Right</button>
+        </div>
+
+        <div id="SecondNote" hidden="hidden">
+            <img id="NoUseImage" src="img/secondroomnote.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="SecondNotePickup()">Pick Up</button>
+        </div>
+
+        <div id="SecondNotePickup" hidden="hidden">
+            <img id="NoUseImage" src="img/Note2.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="SecondNoteAway()">Put Away</button>
+        </div>
+
+        <div id="SecondNoteAway" hidden="hidden">
+            <img id="NoUseImage" src="img/secondroomNonote.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="BackToRoom()">Go Back</button>
+        </div>
+
+        <div id="BackToRoom" hidden="hidden">
+            <img id="NoUseImage" src="img/secondroomfirst1.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="FuseBox()">Go Right</button>
+        </div>
+
+        <div id="FuseBox" hidden="hidden">
+            <img id="NoUseImage" src="img/GorightBrokeBox.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="Death()">Fix</button>
+            <button class="progressButton" id="btn1" onclick="Tape()">Look Down</button>
+        </div>
+
+        <div id="Death" hidden="hidden">
+            <img id="NoUseImage" src="img/Dead.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="StartGame()">Restart</button>
+        </div>
+
+        <div id="Tape" hidden="hidden">
+            <img id="NoUseImage" src="img/secondroomtape.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="TapePickup()">Pick up</button>
+        </div>
+
+        <div id="TapePickup" hidden="hidden">
+            <img id="NoUseImage" src="img/secondroomNOtape.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="BacktoFuseBox()">Go Back</button>
+        </div>
+
+        <div id="BacktoFuseBox" hidden="hidden">
+            <img id="NoUseImage" src="img/GorightBrokeBox.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="FixedFuse()">Fix</button>
+        </div>
+
+        <div id="FixedFuse" hidden="hidden">
+            <img id="NoUseImage" src="img/GorightfixedBox.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="SecondDoorOpen()">Go to door</button>
+        </div>
+
+        <div id="SecondDoorOpen" hidden="hidden">
+            <img id="NoUseImage" src="img/secondroomdooropen.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="ThirdRoom()">Enter next room</button>
+        </div>
+
+        <div id="ThirdRoom" hidden="hidden">
+            <img id="NoUseImage" src="img/roomthreeempty.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="ThirdRoomLeft()">Look Left</button>
+            <button class="progressButton" id="btn1" onclick="ThirdRoomRight2()">Look Right</button>
+        </div>
+
+        <div id="ThirdRoomRight2" hidden="hidden">
+            <img id="NoUseImage" src="img/roomthreegoright.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="BackToThirdRoom2()">Go Back</button>
+
+        </div>
+
+        <div id="BackToThirdRoom2" hidden="hidden">
+            <img id="NoUseImage" src="img/roomthreeempty.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="ThirdRoomGoLeft2()">Go Left</button>
+
+        </div>
+
+        <div id="ThirdRoomGoLeft2" hidden="hidden">
+            <img id="NoUseImage" src="img/roomthreegoleftnote.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="ThirdRoomNote2()">Read</button>
+
+        </div>
+
+        <div id="ThirdRoomNote2" hidden="hidden">
+            <img id="NoUseImage" src="img/Note3.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="ThirdRoomScrewD2()">Put Away</button>
+
+        </div>
+
+        <div id="ThirdRoomScrewD2" hidden="hidden">
+            <img id="NoUseImage" src="img/roomthreegoleftscrewd.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="ThirdRoomLeftEmpty2()">Pick Up</button>
+
+        </div>
+
+        <div id="ThirdRoomLeftEmpty2" hidden="hidden">
+            <img id="NoUseImage" src="img/roomthreegoleftempty.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="ThirdRoomSecret()">Go Back</button>
+
+        </div>
+
+
+
+        <div id="ThirdRoomLeft" hidden="hidden">
+            <img id="NoUseImage" src="img/roomthreegoleftnote.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="ThirdRoomNote()">Read Note</button>
+
+        </div>
+
+        <div id="ThirdRoomNote" hidden="hidden">
+            <img id="NoUseImage" src="img/Note3.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="ThirdRoomScrewD()">Put Away</button>
+
+        </div>
+
+        <div id="ThirdRoomScrewD" hidden="hidden">
+            <img id="NoUseImage" src="img/roomthreegoleftscrewd.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="ThirdRoomLeftEmpty()">Pick Up</button>
+
+        </div>
+
+        <div id="ThirdRoomLeftEmpty" hidden="hidden">
+            <img id="NoUseImage" src="img/roomthreegoleftempty.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="BackToThirdRoom()">Go Back</button>
+
+        </div>
+
+
+        <div id="BackToThirdRoom" hidden="hidden">
+            <img id="NoUseImage" src="img/roomthreeempty.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="RoomThreeRight1()">Go Right</button>
+
+        </div>
+
+        <div id="RoomThreeRight1" hidden="hidden">
+            <img id="NoUseImage" src="img/roomthreegoright.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="ThirdRoomSecret()">Go Back</button>
+
+        </div>
+
+        <div id="ThirdRoomSecret" hidden="hidden">
+            <img id="NoUseImage" src="img/roomthreeempty.jpg" onclick="ThirdRoomSecretItem()" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="ThirdRoomStairs1()">Go Foreward</button>
+
+        </div>
+
+        <div id="ThirdRoomStairs1" hidden="hidden">
+            <img id="NoUseImage" src="img/thirdroomdoor1.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="ThirdRoomHammerUsed1()">Use Hammer</button>
+
+        </div>
+
+        <div id="ThirdRoomHammerUsed1" hidden="hidden">
+            <img id="NoUseImage" src="img/thirdroomdoor2hammerused.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="ChooseEnding1()">Pry Open With Screwdriver</button>
+
+        </div>
+
+        <div id="ChooseEnding1" hidden="hidden">
+            <img id="NoUseImage" src="img/chooseending.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="BadEnding()">Go After Don</button>
+            <button class="progressButton" id="btn1" onclick="SaveFamily()">Try to Save Your Family</button>
+
+        </div>
+
+        <div id="BadEnding" hidden="hidden">
+            <img id="NoUseImage" src="img/endingGoAfterDon1.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="BadEnding1()">Next</button>
+
+        </div>
+
+        <div id="BadEnding1" hidden="hidden">
+            <img id="NoUseImage" src="img/EndingDonBad1.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="BackToThre()">End</button>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+        <div id="ThirdRoomSecretItem" hidden="hidden">
+            <img id="NoUseImage" src="img/roomthreeempty.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="ThirdRoomStairs1()">Go Foreward</button>
+            <button class="progressButton" id="btn1" onclick="ThirdRoomSecretGun()">Look Under Stairs</button>
+
+        </div>
+
+        <div id="ThirdRoomSecretGun" hidden="hidden">
+            <img id="NoUseImage" src="img/SecretGun.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="ThirdRoomSecretGunTaken()">Take Gun</button>
+
+        </div>
+
+        <div id="ThirdRoomSecretGunTaken" hidden="hidden">
+            <img id="NoUseImage" src="img/SecretNoGun.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="ThirdRoomStairs2()">Go up stairs</button>
+
+        </div>
+
+        <div id="ThirdRoomStairs2" hidden="hidden">
+            <img id="NoUseImage" src="img/thirdroomdoor1.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="ThirdRoomDoorLocked2()">Use Hammer</button>
+
+        </div>
+
+        <div id="ThirdRoomDoorLocked2" hidden="hidden">
+            <img id="NoUseImage" src="img/thirdroomdoor2hammerused.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="AllEndingChoices()">Pry open with Screwdriver</button>
+
+        </div>
+
+        <div id="AllEndingChoices" hidden="hidden">
+            <img id="NoUseImage" src="img/chooseending.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="GoAfterDonGood()">Go after Don</button>
+            <button class="progressButton" id="btn1" onclick="SaveFamily()">Try save your Family</button>
+
+
+        </div>
+
+        <div id="GoAfterDonGood" hidden="hidden">
+            <img id="NoUseImage" src="img/endingGoAfterDon1.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="GoAfterDonGood1()">Next</button>
+
+
+
+        </div>
+
+        <div id="GoAfterDonGood1" hidden="hidden">
+            <img id="NoUseImage" src="img/endingDonGood1.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="">End</button>
+
+
+
+        </div>
+
+        <div id="SaveFamily" hidden="hidden">
+            <img id="NoUseImage" src="img/SaveFamily1.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="SaveFamily1()">Next</button>
+
+
+
+        </div>
+
+        <div id="SaveFamily1" hidden="hidden">
+            <img id="NoUseImage" src="img/EndingSaveFam1.jpg" height="550" width="900" /><br />
+            <button class="progressButton" id="btn1" onclick="">End</button>
+
+
+
+        </div>
+
+
+
     </div>
 
-    <div id="level2" hidden="hidden">
-        <img id="secondImage" src="img/placeholder1.jpg" height="550" width="900" /><br />
-        <button class="progressButton" onclick="Level3()">Look left</button>
-    </div>
 
-    <div id="level3" hidden="hidden">
-        <img id="thirdImage" src="img/placeholder2.jpg" height="550" width="900" /><br />
-        <button class="progressButton" onclick="NextLevel()">Look Right</button>
-    </div>
+
+
+
 
     <script type="text/javascript">
 
+        var startTime, endTime;
+
+
+
+
+        let json = {};
+        json.Level = 0;
+        json.Score = 0
+        json.Ending = "unset";
+        json.Name = "Kidnapped";
+        json.Time; "unset";
+        
 
         function StartGame() {
             document.getElementById("start").style.display = "none";
             document.getElementById("level1").hidden = false;
-            var sound = document.getElementById("music1")
+            var sound = document.getElementById("music1");
+            startTime = new Date();
             sound.play();
+            var username = document.getElementById("username").innerText;
+            player = new Player(username);
+            json.Level = 1;
+
         }
 
         function Level2() {
             document.getElementById("level1").style.display = "none";
             document.getElementById("level2").hidden = false;
+
 
         }
         function Level3() {
@@ -77,6 +481,602 @@
             document.getElementById("level3").hidden = false;
 
         }
+
+        function Level4() {
+            document.getElementById("level3").style.display = "none";
+            document.getElementById("level4").hidden = false;
+
+        }
+
+        function Level5() {
+            document.getElementById("level4").style.display = "none";
+            document.getElementById("level5").hidden = false;
+
+
+
+
+        }
+
+
+
+        function Level6() {
+            document.getElementById("level5").style.display = "none";
+            document.getElementById("level6").hidden = false;
+
+
+        }
+
+        function Level7() {
+            document.getElementById("level6").style.display = "none";
+            document.getElementById("level7").hidden = false;
+            var sound = document.getElementById("music6");
+            sound.play();
+            json.Score = 1;
+
+        }
+
+        function Level8() {
+            document.getElementById("level7").style.display = "none";
+            document.getElementById("level8").hidden = false;
+            var sound = document.getElementById("music6");
+            sound.play();
+
+        }
+
+
+
+        function Level9() {
+            document.getElementById("level8").style.display = "none";
+            document.getElementById("level9").hidden = false;
+            var sound = document.getElementById("music5");
+            sound.play();
+            json.Score = 2;
+
+        }
+
+        function Level10() {
+            document.getElementById("level9").style.display = "none";
+            document.getElementById("level10").hidden = false;
+
+
+        }
+
+        function Level11() {
+            document.getElementById("level10").style.display = "none";
+            document.getElementById("level11").hidden = false;
+
+
+        }
+
+        function FirstLockOpen() {
+            document.getElementById("level11").style.display = "none";
+            document.getElementById("FirstLockOpen").hidden = false;
+
+
+        }
+
+        function FirstLockOpened() {
+            document.getElementById("FirstLockOpen").style.display = "none";
+            document.getElementById("FirstLockOpened").hidden = false;
+            var sound = document.getElementById("music2");
+            sound.play();
+            json.Level = 2;
+            json.Score = 3
+
+
+        }
+
+        function GoRightNoUse() {
+            document.getElementById("level5").style.display = "none";
+            document.getElementById("GoRightNoUse").hidden = false;
+
+        }
+
+        function Backfirstroom() {
+            document.getElementById("GoRightNoUse").style.display = "none";
+            document.getElementById("Backfirstroom").hidden = false;
+
+        }
+
+        function Left2() {
+            document.getElementById("Backfirstroom").style.display = "none";
+            document.getElementById("Left2").hidden = false;
+
+        }
+
+        function Pickup2() {
+            document.getElementById("Left2").style.display = "none";
+            document.getElementById("Pickup2").hidden = false;
+            var sound = document.getElementById("music6");
+            sound.play();
+            json.Score = 1;
+
+        }
+
+        function Hammer2() {
+            document.getElementById("Pickup2").style.display = "none";
+            document.getElementById("Hammer2").hidden = false;
+            var sound = document.getElementById("music6");
+            sound.play();
+
+        }
+        function Table2() {
+            document.getElementById("Hammer2").style.display = "none";
+            document.getElementById("Table2").hidden = false;
+            var sound = document.getElementById("music5");
+            sound.play();
+            json.Score = 2;
+        }
+
+        function FirstRoom2() {
+            document.getElementById("Table2").style.display = "none";
+            document.getElementById("FirstRoom2").hidden = false;
+
+        }
+
+        function Firstdoor2() {
+            document.getElementById("FirstRoom2").style.display = "none";
+            document.getElementById("Firstdoor2").hidden = false;
+
+        }
+
+        function Firstlock2() {
+            document.getElementById("Firstdoor2").style.display = "none";
+            document.getElementById("Firstlock2").hidden = false;
+
+        }
+
+        function Firstlockopened2() {
+            document.getElementById("Firstlock2").style.display = "none";
+            document.getElementById("Firstlockopened2").hidden = false;
+            var sound = document.getElementById("music2");
+            sound.play();
+            json.Level = 2;
+            json.Score = 3;
+
+        }
+
+        function SecondRoom() {
+            document.getElementById("Firstlockopened2").style.display = "none";
+            document.getElementById("FirstLockOpened").style.display = "none";
+            document.getElementById("SecondRoom").hidden = false;
+
+        }
+
+        function SecondNote() {
+            document.getElementById("SecondRoom").style.display = "none";
+            document.getElementById("SecondNote").hidden = false;
+
+        }
+
+        function SecondNotePickup() {
+            document.getElementById("SecondNote").style.display = "none";
+            document.getElementById("SecondNotePickup").hidden = false;
+            var sound = document.getElementById("music6");
+            sound.play();
+            json.Score = 4;
+
+        }
+
+        function SecondNoteAway() {
+            document.getElementById("SecondNotePickup").style.display = "none";
+            document.getElementById("SecondNoteAway").hidden = false;
+            var sound = document.getElementById("music6");
+            sound.play();
+
+        }
+
+        function BackToRoom() {
+            document.getElementById("SecondNoteAway").style.display = "none";
+            document.getElementById("BackToRoom").hidden = false;
+
+
+        }
+
+        function FuseBox() {
+            document.getElementById("BackToRoom").style.display = "none";
+            document.getElementById("SecondRoom").style.display = "none";
+            document.getElementById("FuseBox").hidden = false;
+            var sound = document.getElementById("music7");
+            sound.play();
+
+
+        }
+
+        function Tape() {
+            document.getElementById("FuseBox").style.display = "none";
+            document.getElementById("Tape").hidden = false;
+
+
+
+        }
+
+        function TapePickup() {
+            document.getElementById("Tape").style.display = "none";
+            document.getElementById("TapePickup").hidden = false;
+            json.Score = 5;
+
+
+        }
+
+        function BacktoFuseBox() {
+            document.getElementById("TapePickup").style.display = "none";
+            document.getElementById("BacktoFuseBox").hidden = false;
+
+
+        }
+
+        function FixedFuse() {
+            document.getElementById("BacktoFuseBox").style.display = "none";
+            document.getElementById("FixedFuse").hidden = false;
+            json.Score = 6;
+
+
+        }
+
+        function SecondDoorOpen() {
+            document.getElementById("FixedFuse").style.display = "none";
+            document.getElementById("SecondDoorOpen").hidden = false;
+
+
+        }
+
+        function ThirdRoom() {
+            document.getElementById("SecondDoorOpen").style.display = "none";
+            document.getElementById("ThirdRoom").hidden = false;
+            json.Score = 7;
+            json.Level = 3;
+
+        }
+
+        function ThirdRoomLeft() {
+            document.getElementById("ThirdRoom").style.display = "none";
+            document.getElementById("ThirdRoomLeft").hidden = false;
+
+
+        }
+
+        function ThirdRoomNote() {
+            document.getElementById("ThirdRoomLeft").style.display = "none";
+            document.getElementById("ThirdRoomNote").hidden = false;
+            var sound = document.getElementById("music6");
+            sound.play();
+            json.Score = 8;
+
+
+        }
+
+        function ThirdRoomScrewD() {
+            document.getElementById("ThirdRoomNote").style.display = "none";
+            document.getElementById("ThirdRoomScrewD").hidden = false;
+            var sound = document.getElementById("music6");
+            sound.play();
+
+
+        }
+
+        function ThirdRoomLeftEmpty() {
+            document.getElementById("ThirdRoomScrewD").style.display = "none";
+            document.getElementById("ThirdRoomLeftEmpty").hidden = false;
+            var sound = document.getElementById("music5");
+            sound.play();
+            json.Score = 9;
+
+
+        }
+
+        function BackToThirdRoom() {
+            document.getElementById("ThirdRoomLeftEmpty").style.display = "none";
+            document.getElementById("BackToThirdRoom").hidden = false;
+
+
+
+        }
+
+        function RoomThreeRight1() {
+            document.getElementById("BackToThirdRoom").style.display = "none";
+            document.getElementById("RoomThreeRight1").hidden = false;
+
+
+
+        }
+
+
+
+        function ThirdRoomRight2() {
+            document.getElementById("ThirdRoom").style.display = "none";
+            document.getElementById("ThirdRoomRight2").hidden = false;
+
+
+
+        }
+
+        function BackToThirdRoom2() {
+            document.getElementById("ThirdRoomRight2").style.display = "none";
+            document.getElementById("BackToThirdRoom2").hidden = false;
+
+
+
+        }
+
+        function ThirdRoomGoLeft2() {
+            document.getElementById("BackToThirdRoom2").style.display = "none";
+            document.getElementById("ThirdRoomGoLeft2").hidden = false;
+
+
+
+        }
+
+        function ThirdRoomNote2() {
+            document.getElementById("ThirdRoomGoLeft2").style.display = "none";
+            document.getElementById("ThirdRoomNote2").hidden = false;
+            var sound = document.getElementById("music6");
+            sound.play();
+            json.Score = 8;
+
+
+
+        }
+
+        function ThirdRoomScrewD2() {
+            document.getElementById("ThirdRoomNote2").style.display = "none";
+            document.getElementById("ThirdRoomScrewD2").hidden = false;
+            var sound = document.getElementById("music6");
+            sound.play();
+
+
+
+        }
+
+        function ThirdRoomLeftEmpty2() {
+            document.getElementById("ThirdRoomScrewD2").style.display = "none";
+            document.getElementById("ThirdRoomLeftEmpty2").hidden = false;
+            var sound = document.getElementById("music5");
+            sound.play();
+            json.Score = 9;
+
+
+
+        }
+
+
+
+        function ThirdRoomSecret() {
+            document.getElementById("RoomThreeRight1").style.display = "none";
+            document.getElementById("ThirdRoomLeftEmpty2").style.display = "none";
+            document.getElementById("ThirdRoomSecret").hidden = false;
+
+
+
+        }
+
+        function ThirdRoomStairs1() {
+            document.getElementById("ThirdRoomSecret").style.display = "none";
+            document.getElementById("ThirdRoomSecretItem").style.display = "none";
+            document.getElementById("ThirdRoomStairs1").hidden = false;
+
+
+
+
+        }
+
+        function ThirdRoomHammerUsed1() {
+            document.getElementById("ThirdRoomStairs1").style.display = "none";
+            document.getElementById("ThirdRoomHammerUsed1").hidden = false;
+            var sound = document.getElementById("music2");
+            sound.play();
+
+
+
+        }
+
+        function ChooseEnding1() {
+            document.getElementById("ThirdRoomHammerUsed1").style.display = "none";
+            document.getElementById("ChooseEnding1").hidden = false;
+            var sound = document.getElementById("music8");
+            sound.play();
+            json.Level = 4;
+
+
+
+        }
+
+        function BadEnding() {
+            document.getElementById("ChooseEnding1").style.display = "none";
+            document.getElementById("BadEnding").hidden = false;
+            json.Score = 10;
+            
+
+
+
+
+        }
+
+        function BadEnding1() {
+            document.getElementById("BadEnding").style.display = "none";
+            document.getElementById("BadEnding1").hidden = false;
+            var sound = document.getElementById("music4");
+            sound.play();
+            json.Ending = "Bad Ending";
+            endTime = new Date();
+            var dateTimeElapsed = endTime - startTime;
+            json.Time = Math.round(dateTimeElapsed / 60000);
+            saveJSON(json, 'data.json');
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+        function ThirdRoomSecretItem() {
+            document.getElementById("ThirdRoomSecret").style.display = "none";
+            document.getElementById("ThirdRoomSecretItem").hidden = false;
+
+
+
+        }
+
+        function ThirdRoomSecretGun() {
+            document.getElementById("ThirdRoomSecretItem").style.display = "none";
+            document.getElementById("ThirdRoomSecretGun").hidden = false;
+
+
+
+        }
+
+        function ThirdRoomSecretGunTaken() {
+            document.getElementById("ThirdRoomSecretGun").style.display = "none";
+            document.getElementById("ThirdRoomSecretGunTaken").hidden = false;
+            var sound = document.getElementById("music3");
+            sound.play();
+            json.Score = 10;
+
+
+
+        }
+
+        function ThirdRoomStairs2() {
+            document.getElementById("ThirdRoomSecretGunTaken").style.display = "none";
+            document.getElementById("ThirdRoomStairs2").hidden = false;
+
+
+
+
+        }
+
+        function ThirdRoomDoorLocked2() {
+            document.getElementById("ThirdRoomStairs2").style.display = "none";
+            document.getElementById("ThirdRoomDoorLocked2").hidden = false;
+            var sound = document.getElementById("music2");
+            sound.play();
+
+
+
+
+
+        }
+
+        function AllEndingChoices() {
+            document.getElementById("ThirdRoomDoorLocked2").style.display = "none";
+            document.getElementById("AllEndingChoices").hidden = false;
+            var sound = document.getElementById("music8");
+            sound.play();
+            json.Level = 4;
+
+
+
+
+
+        }
+
+        function GoAfterDonGood() {
+            document.getElementById("AllEndingChoices").style.display = "none";
+            document.getElementById("GoAfterDonGood").hidden = false;
+            json.Score = 11;
+           
+
+
+
+
+
+        }
+
+        function SaveFamily() {
+            document.getElementById("AllEndingChoices").style.display = "none";
+            document.getElementById("ChooseEnding1").style.display = "none";
+            document.getElementById("SaveFamily").hidden = false;
+            json.Score = 11;
+            
+
+
+
+
+
+        }
+
+        function SaveFamily1() {
+            document.getElementById("SaveFamily").style.display = "none";
+            document.getElementById("SaveFamily1").hidden = false;
+            json.Ending = "Good Ending";
+            endTime = new Date();
+            var dateTimeElapsed = endTime - startTime;
+            json.Time = Math.round(dateTimeElapsed / 60000);
+            saveJSON(json, 'data.json');
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        function Death() {
+            document.getElementById("FuseBox").style.display = "none";
+            document.getElementById("Death").hidden = false;
+            json.Ending = "You Died";
+            endTime = new Date();
+            var dateTimeElapsed = endTime - startTime;
+            json.Time = Math.round(dateTimeElapsed / 60000);
+            saveJSON(json, 'data.json');
+
+
+        }
+
+
+
+
+
+
+        function GoAfterDonGood1() {
+            document.getElementById("GoAfterDonGood").style.display = "none";
+            document.getElementById("GoAfterDonGood1").hidden = false;
+            var sound = document.getElementById("music4");
+            sound.play();
+            json.Ending = "Best Ending";
+            endTime = new Date();
+            var dateTimeElapsed = endTime - startTime;
+            json.Time = Math.round(dateTimeElapsed / 60000);
+            saveJSON(json, 'data.json');
+
+
+        }
+
+
+
+        class Player {
+            constructor(username) {
+                Username: null;
+                level: null;
+                name: "Kidnapped";
+                score: null;
+                this.timeElapsed = 0;
+            }
+        }
+
+
+
+
+
+
 
 
     </script>
